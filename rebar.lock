@@ -1,0 +1,8 @@
+[{<<"epcap">>,
+  {git,"https://github.com/msantos/epcap.git",
+       {ref,"ce895e460d9d22036ae3c7122af8b73c292f7709"}},
+  0},
+ {<<"pkt">>,
+  {git,"https://github.com/msantos/pkt.git",
+       {ref,"f21be7734da7089cec057385d728d1111694671a"}},
+  1}].

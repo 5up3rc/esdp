@@ -1,0 +1,17 @@
+{application, 'esdp',
+ [{description, "An OTP application"},
+  {vsn, "0.1.0"},
+  {registered, []},
+  {mod, {'esdp_app', []}},
+  {applications,
+   [kernel
+   , stdlib
+   , epcap
+   ]},
+  {env,[]},
+  {modules, []},
+
+  {contributors, []},
+  {licenses, []},
+  {links, []}
+ ]}.
