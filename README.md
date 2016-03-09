@@ -69,7 +69,8 @@ fill in
 Single Packet Authorization
 -----
 From the CSA documentation:
-```One of the primary objectives of the software defined perimeter 
+
+```"One of the primary objectives of the software defined perimeter 
 is to make the application infrastructure effectively “black,” or undetectable, 
 showing no domain name system (DNS) information or IP addresses.
 Single packet authorization (SPA) enables the software defined perimeter 
@@ -77,7 +78,7 @@ to reject all traffic to it from unauthorized devices.
 It requires that the first packet to the controller cryptographically verifies 
 that it is an authorized device before being considered for access to the protected service. 
 If visibility is granted, SPA is utilized again to enable the gateway 
-to identify the traffic coming from authorized users and reject all other traffic.```
+to identify the traffic coming from authorized users and reject all other traffic."```
 
 Mutual Transport Layer Security (mTLS) / IPSEC
 -----
