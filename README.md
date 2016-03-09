@@ -133,7 +133,7 @@ Note the project will account for the elastic, transitory nature of cloud -
 ie the 'pre-determined set' can change. 
 VM's can be added, and VM's can be removed.
 The esdp code will control the 
-More in a later section (elasticiy) on this.
+More in a later section (elasticity) on this.
 
 Application Binding
 -----
@@ -145,7 +145,8 @@ Application binding constrains authorized applications
 so they can only communicate through those encrypted tunnels, and, 
 simultaneously, blocks all other applications from using those tunnels."```
 
-fill in
+Hand waving early on in the project. 
+Later this will be handled as part of build/install (more handwaving).
 
 
 Elasticity
@@ -182,3 +183,9 @@ tools looked at
 
 
 
+What is done, what to do
+-----
+
+Done: nothing
+
+ToDo: good question
