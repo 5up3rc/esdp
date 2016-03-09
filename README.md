@@ -1,3 +1,8 @@
+NOT READY YET
+=====
+This project is in it's infancy and not ready for cloning yet.
+Contact the author for how best to join in and help.
+
 esdp
 =====
 
@@ -64,7 +69,21 @@ SDP Principles
 
 Dynamic Pinhole Firewalls
 -----
-fill in
+From the CSA documentation:
+
+```"Most people are familiar with traditional firewalls that use static configurations to limit incoming and outgoing traffic based on the address information in the IP packet (that is, based on the quintuplet of protocol, source IP address and port, and destination IP address and port). Most enterprise firewalls have ten, hundreds, or even thousands of firewall rules.
+Unlike traditional firewalls, dynamic firewalls have only one firewall rule: deny all. Communication with each device is individually enabled by dynamically inserting “Permit <IP quintuplet>” into the firewall policy. In the software defined perimeter architecture, gateways incorporate this dynamic firewall security control.
+More specifically, the software defined perimeter dynamically binds users to devices, and then dynamically enables those users to access protected resources by dynamically creating and removing firewall rules in the SDP gateways."```
+
+I.e. the 'dynamic' is associated with the firewall is only opened temporarily (for the initiation of the session). 
+The 'pinhole' refers to only allowing an individual entity thu AFTER authorization has occurred 
+(with the 3rd party SDP controller). 
+
+For the esdp project there are 'two' firewalls:
+* the 'network' firewall, external to the vm in the hypervisor, provided by the cloud system (eg iptables, security groups, etc) via an api
+* whatever is implemented in the software
+
+Ideally this project will control both - ie send api calls to the network fw and implement fw in the code running on the vm
 
 Single Packet Authorization
 -----
@@ -80,18 +99,58 @@ that it is an authorized device before being considered for access to the protec
 If visibility is granted, SPA is utilized again to enable the gateway 
 to identify the traffic coming from authorized users and reject all other traffic."```
 
+One of the decisions the esdp project will need to decide whether to implement SPA in erlang or to wrap
+the open source project fwknop (https://www.cipherdyne.org/fwknop/docs/fwknop-tutorial.html) in erlang.
+
 Mutual Transport Layer Security (mTLS) / IPSEC
 -----
-fill in
+From the CSA documentation:
+
+```"Transport layer security (TLS), also known as secure sockets layer (SSL), 
+was designed to provide device authentication prior to enabling confidential communication over the Internet. 
+The standard was originally designed to provide mutual device authentication. 
+However, in practice, TLS is typically only used to authenticate servers to clients, not clients to servers. 
+The software defined perimeter uses the full TLS standard 
+to provide mutual, two-way cryptographic authentications."```
+
+Note the edsp project will be using Next Gen Network - ie ipv6 with ipsec. 
+But key point is 'mutual' ie both sides need to authenticate.
 
 Device Validation
 -----
-fill in
+From the CSA documentation:
+
+```"Mutual TLS proves that the device requesting access to the software defined perimeter 
+possesses a private key that has not expired and that has not been revoked, 
+but it does not prove that the key has not been stolen. 
+Device validation proves that the key is held by the proper device. 
+In addition, device validation attests to the fact that the device 
+is running trusted software and is being used by the appropriate user."```
+
+For esdp the general version of device validation will be delayed until later. 
+The initial functionality will assume a trusted cloud setup of a pre-determined set of cloud vm's.
+Note the project will account for the elastic, transitory nature of cloud -
+ie the 'pre-determined set' can change. 
+VM's can be added, and VM's can be removed.
+The esdp code will control the 
+More in a later section (elasticiy) on this.
 
 Application Binding
 -----
+From the CSA documentation:
+
+```"After authenticating and authorizing both the device and the user, 
+the software defined perimeter creates encrypted TLS tunnels to the protected applications. 
+Application binding constrains authorized applications 
+so they can only communicate through those encrypted tunnels, and, 
+simultaneously, blocks all other applications from using those tunnels."```
+
 fill in
 
+
+Elasticity
+-----
+fill in on how works when machines come and go
 
 Other work to explore for relevance
 -----
