@@ -1,0 +1,48 @@
+using sniff example from epcap
+
+works for wifi and loopback ipv4
+
+rebar3 shell
+{ok, Pid} =  sniff:start_link().
+#wifi
+sniff:start([{interface, "en0"}]).
+#loop
+sniff:start([{interface, “lo0"}]).
+
+ipv6
+ping6 fe80::1%lo0
+
+died on ipv6 loopback
+
+
+
+
+
+=ERROR REPORT==== 12-Mar-2016::14:41:39 ===
+** State machine sniff terminating 
+** Last message in was {packet,0,
+                               {1457,811699,890489},
+                               60,
+                               <<30,0,0,0,96,15,242,77,0,16,58,64,254,128,0,0,
+                                 0,0,0,0,0,0,0,0,0,0,0,1,254,128,0,0,0,0,0,0,
+                                 0,0,0,0,0,0,0,1,128,0,29,150,6,215,0,0,86,
+                                 228,112,243,0,13,150,95>>}
+** When State == sniffing
+**      Data  == {state,<0.105.0>,true,[]}
+** Reason for termination = 
+** {function_clause,[{pkt,decapsulate_next,
+                          [{inet6,<<96,15,242,77,0,16,58,64,254,128,0,0,0,0,0,
+                                    0,0,0,0,0,0,0,0,1,254,128,0,0,0,0,0,0,0,0,
+                                    0,0,0,0,0,1,128,0,29,150,6,215,0,0,86,228,
+                                    112,243,0,13,150,95>>},
+                           [{null,30}]],
+                          [{file,"/Users/duncan/MyDev/GitHub/esdp/_build/default/lib/pkt/src/pkt.erl"},
+                           {line,105}]},
+                     {sniff,handle_info,3,
+                            [{file,"/Users/duncan/MyDev/GitHub/esdp/_build/default/lib/esdp/src/sniff.erl"},
+                             {line,89}]},
+                     {gen_fsm,handle_msg,7,[{file,"gen_fsm.erl"},{line,518}]},
+                     {proc_lib,init_p_do_apply,3,
+                               [{file,"proc_lib.erl"},{line,240}]}]}
+
+=CRASH REPORT=...
