@@ -169,6 +169,14 @@ tools looked at
 
 - epcap
   +  epcap/examples/sniff.erl
+    o 
+  + epcap compile
+    o https://github.com/msantos/epcap_compile
+  + procket
+     o http://blog.listincomprehension.com/search/label/procket
+     o https://github.com/msantos/procket
+  + pkt
+    o https://github.com/msantos/pkt
 
 - infoblox openflow opensourceRouter=Linc
   + http://www.erlang-factory.com/upload/presentations/635/openflow.soft.switch-krzysztof.rutka.pdf
