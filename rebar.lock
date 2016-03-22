@@ -1,8 +1,11 @@
 [{<<"epcap">>,
-  {git,"https://github.com/msantos/epcap.git",
+  {git,"https://github.com/sparrell/epcap.git",
        {ref,"ce895e460d9d22036ae3c7122af8b73c292f7709"}},
   0},
+ {<<"goldrush">>,{pkg,<<"goldrush">>,<<"0.1.7">>},1},
+ {<<"lager">>,{pkg,<<"lager">>,<<"3.0.2">>},0},
  {<<"pkt">>,
-  {git,"https://github.com/msantos/pkt.git",
+  {git,"https://github.com/sparrell/pkt.git",
        {ref,"f21be7734da7089cec057385d728d1111694671a"}},
-  1}].
+  0},
+ {<<"recon">>,{pkg,<<"recon">>,<<"2.2.1">>},0}].

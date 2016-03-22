@@ -7,6 +7,9 @@
    [kernel
    , stdlib
    , epcap
+   , pkt
+   , recon
+   , lager
    ]},
   {env,[]},
   {modules, []},

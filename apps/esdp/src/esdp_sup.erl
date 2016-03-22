@@ -27,6 +27,7 @@ start_link() ->
 %%====================================================================
 
 %% Child :: {Id,StartFunc,Restart,Shutdown,Type,Modules}
+%% add sniff2file here
 init([]) ->
     {ok, { {one_for_all, 0, 1}, []} }.
 
