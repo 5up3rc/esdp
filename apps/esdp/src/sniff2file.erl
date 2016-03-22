@@ -114,12 +114,6 @@ handle_info({packet, DLT, Time, Len, Data}, sniffing,
         ] ++ Headers ++ packet(Format, Data),
     lager:debug("~p", [PrintVar] ),
 
-    error_logger:info_report([
-            {pcap, [{time, timestamp(Time)},
-                    {caplen, byte_size(Data)},
-                    {len, Len},
-                    {datalink, pkt:dlt(DLT)}]}
-        ] ++ Headers ++ packet(Format, Data)),
     {next_state, sniffing, State};
 
 % epcap port stopped
