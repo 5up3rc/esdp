@@ -55,7 +55,8 @@
 %%% Interface
 %%--------------------------------------------------------------------
 start() ->
-    start([{filter, "tcp and port 80"},
+    start([ {interface, "en0"},
+            {filter, "tcp and port 80"},
             {chroot, "priv/tmp"}]).
 start(Opt) when is_list(Opt) ->
     gen_fsm:send_event(?MODULE, {start, Opt}).
@@ -142,8 +143,14 @@ sniffing(stop, #state{pid = Pid} = State) ->
 %%% Internal functions
 %%--------------------------------------------------------------------
 decode(DLT, Data, #state{crash = true}) ->
+    lager:debug("decode:crash=true"),
+    lager:debug("decode:DLT=~p", [DLT]),
+    lager:debug("decode:Data=~p", [Data]),
     pkt:decapsulate({pkt:dlt(DLT), Data});
 decode(DLT, Data, #state{crash = false}) ->
+    lager:debug("decode:crash=false"),
+    lager:debug("decode:DLT=~p", [DLT]),
+    lager:debug("decode:Data=~p", [Data]),
     case pkt:decode(pkt:dlt(DLT), Data) of
         {ok, {Headers, Payload}} ->
             Headers ++ [Payload];
