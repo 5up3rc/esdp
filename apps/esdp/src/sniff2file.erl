@@ -1,4 +1,4 @@
-%% Copyright (c) 2010-2015, Michael Santos <michael.santos@gmail.com>
+%% Copyright (c) 2010-2015, Duncan Sparrell <duncan@sfractal.com>
 %% All rights reserved.
 %%
 %% Redistribution and use in source and binary forms, with or without
@@ -28,7 +28,7 @@
 %% LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
 %% ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 %% POSSIBILITY OF SUCH DAMAGE.
--module(sniff).
+-module(sniff2file).
 -behaviour(gen_fsm).
 
 -include_lib("pkt/include/pkt.hrl").
@@ -55,9 +55,26 @@
 %%% Interface
 %%--------------------------------------------------------------------
 start() ->
-    start([ {interface, "en0"},
-            {filter, "tcp and port 80"},
-            {chroot, "priv/tmp"}]).
+  Useage = "useage:
+           start(en0_tcp80)
+           start(en1_tcp80)
+           start(lo0_all)
+           start([OptionList])",
+  io:format("~s", [Useage]).
+start(en0_tcp80) ->
+    start([ {filter, "tcp and port 80"}
+          , {interface, "en0"}
+          , {chroot, "priv/tmp"}
+          ]);
+start(en1_tcp80) ->
+    start([ {filter, "tcp and port 80"}
+          , {interface, "en1"}
+          , {chroot, "priv/tmp"}
+          ]);
+start(lo0_all) ->
+    start([ {interface, "lo0"}
+          , {chroot, "priv/tmp"}
+          ]);
 start(Opt) when is_list(Opt) ->
     gen_fsm:send_event(?MODULE, {start, Opt}).
 
@@ -89,13 +106,14 @@ handle_info({packet, DLT, Time, Len, Data}, sniffing,
     #state{format = Format} = State) ->
     Packet = decode(DLT, Data, State),
     Headers = header(Packet),
+    PrintVar = [ { pcap 
+                 , [ {time, timestamp(Time)}
+                   , {caplen, byte_size(Data)}
+                   , {len, Len}
+                   , {datalink, pkt:dlt(DLT)}]}
+        ] ++ Headers ++ packet(Format, Data),
+    lager:debug("~p", [PrintVar] ),
 
-    error_logger:info_report([
-            {pcap, [{time, timestamp(Time)},
-                    {caplen, byte_size(Data)},
-                    {len, Len},
-                    {datalink, pkt:dlt(DLT)}]}
-        ] ++ Headers ++ packet(Format, Data)),
     {next_state, sniffing, State};
 
 % epcap port stopped
@@ -143,14 +161,8 @@ sniffing(stop, #state{pid = Pid} = State) ->
 %%% Internal functions
 %%--------------------------------------------------------------------
 decode(DLT, Data, #state{crash = true}) ->
-    lager:debug("decode:crash=true"),
-    lager:debug("decode:DLT=~p", [DLT]),
-    lager:debug("decode:Data=~p", [Data]),
     pkt:decapsulate({pkt:dlt(DLT), Data});
 decode(DLT, Data, #state{crash = false}) ->
-    lager:debug("decode:crash=false"),
-    lager:debug("decode:DLT=~p", [DLT]),
-    lager:debug("decode:Data=~p", [Data]),
     case pkt:decode(pkt:dlt(DLT), Data) of
         {ok, {Headers, Payload}} ->
             Headers ++ [Payload];
