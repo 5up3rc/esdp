@@ -14,7 +14,7 @@ Some cloud resources
 a webserver, application server, and a database) 
 are available to a user device via an api. 
 
-![big picture](eSDP01.jpg?raw=true "Title")
+![big picture](esdo_02.jpg?raw=true "Title")
 
 The resources being accessed are in the cloud and reside on 3 virtual machines.
 The client device accesses the cloud over the wild internet.
