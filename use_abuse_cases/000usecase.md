@@ -8,19 +8,18 @@ The overall objective is to add eSDP as security controls not this architecture.
 Use Case 000 - Big Picture
 =====
 
-Adding some more detail. 
-Some cloud resources 
-(in this case a typical 3-tier architecture of 
-a webserver, application server, and a database) 
-are available to a user device via an api. 
+This figure adds some more detail to distinquish the types of interfaces. 
+There are two types of cloud resources - one accessed from the client and one 'internal to the cloud'.
+Examples would be the appserver and dbserver in a typical 3-tier architecture of 
+a webserver, application server, and a database where just the webserver has client access. 
 
 ![big picture](esdp_02.jpg?raw=true "Title")
 
-The resources being accessed are in the cloud and reside on 3 virtual machines.
-The client device accesses the cloud over the wild internet.
+The resources being accessed are in the cloud and reside on 2 virtual machines and a distinction is being made
+between the types of interfaces (accessed via client device over the wild internet vs accessed from another cloud server).
 The cloud resources are controlled/orchestrated 
-by a combination of infrastructure api's 
-and a esdp controller (more in specific use cases).
+by a combination of infrastructure APIs
+(more in specific use cases).
 
 The base use case is static, steady state, and simple. 
 Other use cases will elastic up/down the size, deal with startup/shutdown,
