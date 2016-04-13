@@ -4,7 +4,7 @@ This use case is the big picture use case. Some cloud resources (in this case a 
 Use Case 000 - Big Picture
 =====
 
-![big picture no captions](esdp_001.jpg?raw=true "Title")
+![big picture no captions](esdp_01.jpg?raw=true "Big Picture")
 
 
 
