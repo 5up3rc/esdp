@@ -1,22 +1,17 @@
-NOT READY YET
 =====
-This project is in it's infancy and not ready for cloning yet.
-Contact the author for how best to join in and help.
+This use case is the big picture use case. Some cloud resources (in this case a typical 3-tier architecture of a webserver, application server, and a database) are available to a user device via an api. The overall objective is to add eSDP as security controls not this architecture.
 
-Use & Abuse Cases
+Use Case 000 - Big Picture
 =====
+
+![big picture no captions](esdp_001.jpg?raw=true "Title")
+
+
 
 ![big picture](eSDP01.jpg?raw=true "Title")
 
-list
-   - item
-   - item
-
-List
-* item
-** item
-** item
-* item
+The resources being accessed are in the cloud and reside on 3 virtual machines.
+The client
 
 
 Heading
