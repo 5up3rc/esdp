@@ -1,7 +1,7 @@
 =====
 This use case is the big picture use case. 
 A person, using their device, accesses (over the internet) some cloud resources.
-The overall objective is to add eSDP as security controls not this architecture.
+The overall objective is to add eSDP as security controls to this architecture.
 
 ![big picture no captions](esdp_01.jpg?raw=true "Big Picture")
 
