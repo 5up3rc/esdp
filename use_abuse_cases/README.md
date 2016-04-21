@@ -6,14 +6,17 @@ Contact the author for how best to join in and help.
 Use & Abuse Cases
 =====
 
-list
-   - item
+This directory contains readme files about the various usecases.
+
+list of use cases
+   - [000usecase base use case](./000usecase.md) 
+   - [001usecase steady state comms](./001usecase.md) 
    - item
 
 List
 * item
-** item
-** item
+ * item
+ * item
 * item
 
 
