@@ -24,3 +24,4 @@ whose handle_call does whatever it is this api does and replies back through the
 
 add pic showing underlying sw arch
 
+See the [README](./README.md) (in this directory) for the list of usecases and abuse cases

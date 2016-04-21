@@ -34,4 +34,4 @@ own use case. The principles are:
 * Dynamic Pinhole Firewalls
 * Application Binding
 
-See the overall README for the list of usecases and abuse cases
+See the [README](./README.md) (in this directory) for the list of usecases and abuse cases
